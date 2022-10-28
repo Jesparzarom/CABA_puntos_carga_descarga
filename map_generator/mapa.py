@@ -12,11 +12,11 @@ def data_frame():
 dataset = data_frame()
 
 
-def mapa(dataset):
+def mapa(dataset=data_frame(), caba=[-34.59, -58.38]):
     #   Variables
-    caba = [-34.61, -58.37]
-    mapstyle = "cartodbpositron"
-    zoom = 12
+    caba = [-34.59, -58.38]
+    mapstyle = "OpenStreetMap"
+    zoom = 10
 
     #   Creando mapa
     m = folium.Map(location=caba, zoom_start=zoom, tiles=mapstyle, prefer_canvas=True)
@@ -58,9 +58,9 @@ def mapa(dataset):
     m.add_child(clusters)
 
     #   Guardar/crear mapa en formato HTML
-    template = "Templates\mapa2.html"
+    template = "Templates\mapa.html"
     #   m.save(template)
     return m.save(template)
 
 
-mapa(dataset)
+#mapa(dataset)
