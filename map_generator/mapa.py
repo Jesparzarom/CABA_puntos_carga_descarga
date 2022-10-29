@@ -4,8 +4,8 @@ from folium.plugins import MarkerCluster
 
 def data_frame():
     #   Creación del Data Frame a partir de un archivo csv
-    documento = "datasets\cajones-para-carga-y-descarga.csv"
-    dataset = pd.read_csv(documento)
+    documento = "datasets\cajones-para-carga-y-descarga.xlsx"
+    dataset = pd.read_excel(documento)
     return dataset
 
 
