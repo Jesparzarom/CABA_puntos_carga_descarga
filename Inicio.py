@@ -1,10 +1,10 @@
 import plotly_express as px
 import streamlit as st
 import streamlit.components.v1 as components
-from map_generator.mapa import dataset
+from map_generator.mapa import data_frame
 
 
-
+dataset = data_frame()
 #   Modificando el dataset
 dataset2 = dataset.drop(["calle_nombre", "calle_altura", 
                             "codigo_postal_argentino",
@@ -41,7 +41,7 @@ components.html('''
 
 #   Mapa interactivo (Importado directamente del directorio ./Templates/)
 st.subheader(":pushpin: Mapeo interactivo de los puntos")
-p = open("Templates\mapa2.html")
+p = open("./Templates/mapa2.html")
 components.html(p.read(), height=300)
 
 # Contenido: Filtros útiles y Dataframe del dataset en 2 columnas.

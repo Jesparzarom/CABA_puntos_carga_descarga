@@ -3,6 +3,7 @@ import streamlit.components.v1 as components
 from Inicio import seleccion, dataset2
 from map_generator.mapa import mapa
 
+
 # ----- START STREAMLIT -----
 st.set_page_config(
     page_title="Puntos de Carga y Descarga en CABA",
@@ -45,7 +46,7 @@ grupos = grupos.values.tolist()
 # Mostrando el mapa en la pantalla
 if seleccion["barrio"].count() != 1935:
     mapa(seleccion, grupos)
-    p = open("Templates\mapa.html")
+    p = open("./Templates/mapa.html")
     components.html(p.read(), height=400)
 
 # Acciones condicionales sobre los datos informativos

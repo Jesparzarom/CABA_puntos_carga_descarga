@@ -1,6 +1,8 @@
 import streamlit as st
-from map_generator.mapa import dataset
+from map_generator.mapa import data_frame
 
+
+dataset = data_frame()
 
 st.set_page_config(
     page_title="Puntos de Carga y Descarga en CABA",

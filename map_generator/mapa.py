@@ -4,7 +4,7 @@ from folium.plugins import MarkerCluster
 
 def data_frame():
     #   Creación del Data Frame a partir de un archivo csv
-    documento = "datasets\cajones-para-carga-y-descarga.xlsx"
+    documento = "./datasets/cajones-para-carga-y-descarga.xlsx"
     dataset = pd.read_excel(documento)
     return dataset
 
@@ -58,7 +58,7 @@ def mapa(dataset=data_frame(), caba=[-34.59, -58.38]):
     m.add_child(clusters)
 
     #   Guardar/crear mapa en formato HTML
-    template = "Templates\mapa.html"
+    template = "./Templates/mapa.html"
     #   m.save(template)
     return m.save(template)
 
