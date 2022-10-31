@@ -103,7 +103,7 @@ grafico = px.bar(
     template="plotly",
 )
 
-st.plotly_chart(grafico, use_container_width=True)
+st.plotly_chart(grafico, use_container_width=False)
 
 
 st.sidebar.markdown("""
