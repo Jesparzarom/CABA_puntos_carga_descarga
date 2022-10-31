@@ -97,8 +97,8 @@ grafico = px.bar(
     orientation="h",
     log_x=False,
     log_y=False,
-    width=800,
-    height=500,
+    width=500,
+    height=800,
     labels={"count": "", "color": "Barra"},
     template="plotly",
 )
