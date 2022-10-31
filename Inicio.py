@@ -91,7 +91,7 @@ grafic_hoods = dataset2["barrio"]
 
 grafico = px.bar(
     grafic_hoods,
-    color=grafic_hoods,
+    #color=grafic_hoods,
     y="barrio",
     hover_name=None,
     orientation="h",
