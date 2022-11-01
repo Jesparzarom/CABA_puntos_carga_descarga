@@ -121,6 +121,6 @@ st.sidebar.markdown("""
                    - Algunos números al respecto
                    - Dashboard interactivo
                     
-                    ###### En el dashboard interactivo, puedes seleccionar y quitar localidades.  \
+                    ###### En el dashboard interactivo, puedes seleccionar y ver los puntos x localidad.  \
                            Así mismo, en el mapa interactivo puedes ver los puntos agrupados y desagruparlos al hacer zoom  o clickear sobre ellos.
                     """)
