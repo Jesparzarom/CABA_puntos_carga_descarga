@@ -126,6 +126,8 @@ st.sidebar.markdown("""
                            al hacer zoom  o clickear sobre ellos.
                     """)
 
+
+''' BACKGROUND 
 st.write("""
          <style>
             .eczokvf1{
@@ -135,3 +137,4 @@ st.write("""
                 }
         </style>""", 
         unsafe_allow_html=True)
+ '''
