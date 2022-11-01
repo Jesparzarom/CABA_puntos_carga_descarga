@@ -1,5 +1,6 @@
 import streamlit as st
 from map_generator.mapa import data_frame
+from Inicio import grafic_hoods
 
 
 dataset = data_frame()

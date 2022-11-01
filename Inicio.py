@@ -1,3 +1,4 @@
+from optparse import Values
 import plotly_express as px
 import streamlit as st
 import streamlit.components.v1 as components
@@ -19,15 +20,18 @@ dataset2 = dataset2.sort_values(by=['barrio'])
 seleccion = dataset2.copy()
 
 #   Agrupar los puntos por barrio
-seleccion = seleccion.groupby(["barrio"], as_index=False, sort=True)[["lat", "long"]].mean()
+seleccion = seleccion.groupby(["barrio"], as_index=False, sort=True)[["lat", "long", "comuna"]].mean()
 seleccion = pd.DataFrame(seleccion)
 
 #   Asignar Variables "puntos_totales" a puntos totales por barrio y coords a lista de coordenadas
 puntos_totales = dataset2["barrio"].value_counts(sort=False).values # Puntos totales por barrio
+comunas = dataset2["comuna"]
 coords = seleccion[["lat", "long"]].values  # Lista de coordenadas
 
 #   Insertar columna de puntos totales en el Data Frame "seleccion" en la columna 0 + 1
 seleccion.insert(1, "puntos_totales", puntos_totales)
+seleccion.insert(2, "comunas", comunas)
+seleccion["%"] = (seleccion["puntos_totales"]/ seleccion["puntos_totales"].sum())*100
 
 #   Calcular porcentaje de puntos por barrio sobre el total.
 porcentaje = [(str(round((puntos/1935)*100, 2))+"%") for puntos in seleccion["puntos_totales"].values]
@@ -98,10 +102,11 @@ components.html(f'''
                     </div>
                 </section>''')
 
-# --- DASHBOARD ---
-st.subheader(":bar_chart: Dashboard: Cajones azules por barrio")
+# ---  GRAFICOS  ---
+st.subheader(":bar_chart: Dashboard interactivo")
 grafic_hoods = seleccion
 
+#    Barras
 grafico = px.bar(
     grafic_hoods,
     color=grafic_hoods["puntos_totales"],
@@ -112,7 +117,52 @@ grafico = px.bar(
     height=800,
     template="plotly",
 )
+
+#   Globos
+grafico2 = px.scatter(
+    grafic_hoods,
+    x="%",
+    y="barrio",
+    size="%",
+    color="%", 
+    width=500,
+    height=800,
+    range_color=[0, 15],
+    color_continuous_scale=[
+        [0, "rgb(166,206,227)"], [0.25, "rgb(31,120,180)"],
+        [0.45, "rgb(178,223,138)"], [0.65, "rgb(51,160,44)"],
+        [0.85, "rgb(251,154,153)"], [1, "rgb(227,26,28)"]],
+    template="plotly"
+)
+
+#grafico3 = px.sunburst(
+#    grafic_hoods,
+#    path=["comunas", "barrio"],
+#    values="puntos_totales",
+#    width=800,
+#    height=800)
+
+#   Resumen
+grafico4 =px.treemap(
+    grafic_hoods,
+    path=["comunas", "barrio", "puntos_totales"],
+    values="%",
+    width=800,
+    height=800,  
+)
+
+#   Imprimiendo en pantalla los gráficos
+
+st.write("<h3 align='center' style='color:gray'>Resumen</h3>", unsafe_allow_html=True)
+st.plotly_chart(grafico4, use_container_width=True)
+
+st.write("<h3 align='center' style='color:gray'>Puntos por barrio</h3>", unsafe_allow_html=True)
 st.plotly_chart(grafico, use_container_width=True)
+
+st.write("<h3 align='center' style='color:gray'>Porcentaje de puntos por barrio sobre el total</h3>", unsafe_allow_html=True)
+st.plotly_chart(grafico2, use_container_width=True)
+
+# st.plotly_chart(grafico3, use_container_width=True)
 
 st.sidebar.markdown("""
                     ### Contenido
