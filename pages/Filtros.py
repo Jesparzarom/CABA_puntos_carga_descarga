@@ -1,6 +1,4 @@
-import streamlit as st
-import streamlit.components.v1 as components
-from Inicio import seleccion, dataset2
+from Inicio import st, components, seleccion, dataset2
 from map_generator.mapa import mapa
 
 

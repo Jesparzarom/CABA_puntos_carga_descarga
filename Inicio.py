@@ -1,23 +1,36 @@
 import plotly_express as px
 import streamlit as st
 import streamlit.components.v1 as components
-from map_generator.mapa import data_frame
+from map_generator.mapa import pd, data_frame
 
-
+#  --- DATASET ---
 dataset = data_frame()
-#   Modificando el dataset
+
+#   Eliminar columnas
 dataset2 = dataset.drop(["calle_nombre", "calle_altura", 
-                            "codigo_postal_argentino",
-                            "codigo_postal"], axis=1)
+                         "codigo_postal_argentino", "codigo_postal"], axis=1)
 
-dataset2 = dataset2.fillna("Sin dato") # No se borran las celdas vacías porque contienen ubicaciones.
+#   Cambiar valores "NaN" y "Nu\u00f1ez"
+dataset2 = dataset2.fillna("Sin dato") 
+dataset2 = dataset2.replace("Nu\\u00f1ez","Nuñez") 
 
-dataset2 = dataset2.sort_values(by=['barrio'])
+#   Ordenar valores alfabéticamente.
+dataset2 = dataset2.sort_values(by=['barrio']) 
 seleccion = dataset2.copy()
 
+#   Agrupar los puntos por barrio
+seleccion = seleccion.groupby(["barrio"], as_index=False, sort=True)[["lat", "long"]].mean()
+seleccion = pd.DataFrame(seleccion)
 
+#   Asignar Variables "puntos_totales" a puntos totales por barrio y coords a lista de coordenadas
+puntos_totales = dataset2["barrio"].value_counts(sort=False).values # Puntos totales por barrio
+coords = seleccion[["lat", "long"]].values  # Lista de coordenadas
 
-# Algunas variables de utilidad
+#   Insertar columna de puntos totales en el Data Frame "seleccion" en la columna 0 + 1
+seleccion.insert(1, "puntos_totales", puntos_totales)
+
+#   Calcular porcentaje de puntos por barrio sobre el total.
+porcentaje = [(str(round((puntos/1935)*100, 2))+"%") for puntos in seleccion["puntos_totales"].values]
 
 
 # ------- COMIENZA STREAMLIT -------
@@ -52,7 +65,7 @@ components.html(f'''
                         <h5 style="color:teal;">Puntos totales<br> en CABA:</h5>
                         <h2>
                             <span style="color:aquamarine; font-size:4vw; ">
-                                {(seleccion["barrio"].count())}
+                                {1935}
                             </span>
                         </h2>
                     </div>
@@ -84,35 +97,34 @@ components.html(f'''
                         </h2>
                     </div>
                 </section>''')
-    
-# Dashboard
+
+# --- DASHBOARD ---
 st.subheader(":bar_chart: Dashboard: Cajones azules por barrio")
-grafic_hoods = dataset2["barrio"]
+grafic_hoods = seleccion
 
 grafico = px.bar(
     grafic_hoods,
-    #color=grafic_hoods,
+    color=grafic_hoods["puntos_totales"],
     y="barrio",
-    hover_name=None,
+    x="puntos_totales",
     orientation="h",
     log_x=False,
     log_y=False,
     width=500,
     height=800,
-    labels={"count": "", "color": "Barra"},
     template="plotly",
 )
-
-st.plotly_chart(grafico, use_container_width=False)
-
+st.plotly_chart(grafico, use_container_width=True)
 
 st.sidebar.markdown("""
                     ### Contenido
                     
-                    - Mapa interactivo con los puntos (cajones azules) totales.
-                    - Algunos números al respecto
-                    - Dashboard interactivo
+                   - Mapa interactivo con los puntos (cajones azules) totales.
+                   - Algunos números al respecto
+                   - Dashboard interactivo
                     
                     ###### En el dashboard interactivo, puedes seleccionar y quitar localidades.  \
-                            Así mismo, en el mapa interactivo puedes ver los puntos agrupados y desagruparlos al hacer zoom  o clickear sobre ellos.
+                           Así mismo, en el mapa interactivo puedes ver los puntos agrupados y desagruparlos \ 
+                           al hacer zoom  o clickear sobre ellos.
                     """)
+                    
