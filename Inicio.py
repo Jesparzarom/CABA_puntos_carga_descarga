@@ -47,8 +47,8 @@ st.sidebar.markdown("# Mapa General")
 
 # Header de la página
 components.html('''
-            <header style="background: whitesmoke;">    
-                <h1 style="font-size:5vw; padding:5px; border-radius:10px;">Puntos de Carga y Descarga</h1>
+            <header style="background: #512D6D; text-align:center; border-radius:10px;">    
+                <h1 style="font-size:4vw; padding:5px; border-radius:10px; color:#8D9EFF;">Puntos de Carga y Descarga en CABA</h1>
             </header> 
             ''')
 
@@ -57,30 +57,30 @@ st.subheader(":pushpin: Mapeo interactivo de los puntos")
 p = open("./Templates/mapa2.html")
 components.html(p.read(), height=300)
 
-# Contenido: Filtros útiles y Dataframe del dataset en 2 columnas.
+
 components.html(f'''
-                <section style="display:flex; justify-content:space-evenly; text-shadow:1px 1px 10px rgba(0, 0, 0, 0.50); font-family:Lucida Grande;">
+                <section style="display:flex; background: #6C4AB6;  border-radius:10px; justify-content:space-around; text-shadow:1px 1px 10px rgba(0, 0, 0, 0.50); font-family:Lucida Grande;">
                 
-                    <div style="text-align:center; background: rgba(205, 134, 63, 0.20)">
-                        <h5 style="color:teal;">Puntos totales<br> en CABA:</h5>
+                    <div style="text-align:center; padding:2px;">
+                        <h5 style="color:#8D9EFF;">Puntos totales<br> en CABA:</h5>
                         <h2>
-                            <span style="color:aquamarine; font-size:4vw; ">
+                            <span style="color:white; font-size:4vw; ">
                                 {1935}
                             </span>
                         </h2>
                     </div>
                     
-                    <div style="text-align:center; background: rgba(206, 0, 206, 0.20); padding:2px; ">
-                        <h5 style="color:teal;">Barrios en<br> CABA:</h5>
+                    <div style="text-align:center; padding:2px; ">
+                        <h5 style="color:#8D9EFF;">Barrios en<br> CABA:</h5>
                         <h2>
-                            <span style="color:purple; font-size:4vw;">
+                            <span style="color:#00C1D4; font-size:4vw;">
                                 48
                             </span>
                         </h2>
                     </div>
                 
-                    <div style="text-align:center; background: rgba(255, 166, 0, 0.20); padding:2px;">
-                       <h5 style="color:teal;">Promedio<br> de puntos:</h5>
+                    <div style="text-align:center; padding:2px;">
+                       <h5 style="color:#8D9EFF;">Promedio<br> de puntos:</h5>
                         <h2>
                             <span style="color:orange; font-size:4vw;">
                                 {round(1935/48, 2)}
@@ -88,10 +88,10 @@ components.html(f'''
                         </h2>
                     </div>
                     
-                    <div style="text-align:center; background: rgba(255, 99, 71, 0.20); padding:2px;">
-                        <h5 style="color:teal;">Tiempo por<br>vehículo</h5>
+                    <div style="text-align:center; padding:2px;">
+                        <h5 style="color:#8D9EFF;">Tiempo por<br>vehículo</h5>
                         <h2>
-                            <span style="color:tomato; font-size:4vw;">
+                            <span style="color:#F8485E; font-size:4vw;">
                                 30 min
                             </span>
                         </h2>
