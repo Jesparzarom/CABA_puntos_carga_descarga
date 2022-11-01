@@ -43,3 +43,13 @@ st.sidebar.markdown('''
                     
                     ###### Autor: J. Esparza
                     ''')
+
+st.write("""
+         <style>
+            .eczokvf1{
+                background-image: url(https://cdn.pixabay.com/photo/2016/11/19/18/46/concrete-1840731_960_720.jpg);
+                background-repeat:repeat;
+
+                }
+        </style>""", 
+        unsafe_allow_html=True)

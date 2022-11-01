@@ -50,8 +50,8 @@ if seleccion["barrio"].count() != 1935:
 # Acciones condicionales sobre los datos informativos
 if seleccion["barrio"].count() != 1935:
     components.html(f'''
-                    <section style="display:flex; justify-content:space-around; background: rgba(0, 0, 0, 0.50); 
-                    text-shadow:1px 1px 10px rgba(0, 0, 0, 0.50); font-family:Lucida Grande; border-radius:50px;">
+                    <section style="display:flex; justify-content:space-around; background: #06648C; 
+                    text-shadow:1px 1px 10px rgba(0, 0, 0, 0.50); font-family:Lucida Grande;">
                         <div style="text-align:center;">
                             <h4 style="color:white;">Localidad</h4>   
                             <h2>
@@ -90,3 +90,16 @@ st.markdown("""
             - Algunos errores ortográficos en los nombres de los barrios de CABA, fueron heredados del dataset. \
               Por practicidad se dejarón ya que el objetivo principal fue mostrarlos en un mapa interactivo.      \
               **Puedes ver los datos sin modificacion en la pestaña de "Info"** """)
+
+st.write("""
+         <style>
+            .eczokvf1{
+                background-image: url(https://cdn.pixabay.com/photo/2016/11/19/18/46/concrete-1840731_960_720.jpg);
+                background-repeat:repeat;
+                }
+                
+            p{
+                text-shadow:1px 1px 10px white;
+            }
+        </style>""", 
+        unsafe_allow_html=True)

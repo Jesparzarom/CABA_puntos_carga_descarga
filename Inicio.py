@@ -47,8 +47,8 @@ st.sidebar.markdown("# Mapa General")
 
 # Header de la página
 components.html('''
-            <header style="background: #512D6D; text-align:center; border-radius:10px;">    
-                <h1 style="font-size:4vw; padding:5px; border-radius:10px; color:#8D9EFF;">Puntos de Carga y Descarga en CABA</h1>
+            <header style="background: #2B2E4A; text-align:center; border-radius:10px;">    
+                <h1 style="font-size:4vw; padding:5px; border-radius:10px; color:white;">Puntos de Carga y Descarga en CABA</h1>
             </header> 
             ''')
 
@@ -59,7 +59,7 @@ components.html(p.read(), height=300)
 
 
 components.html(f'''
-                <section style="display:flex; background: #6C4AB6;  border-radius:10px; justify-content:space-around; text-shadow:1px 1px 10px rgba(0, 0, 0, 0.50); font-family:Lucida Grande;">
+                <section style="display:flex; background: #2B2E4A; justify-content:space-around; text-shadow:1px 1px 10px rgba(0, 0, 0, 0.50); font-family:Lucida Grande;">
                 
                     <div style="text-align:center; padding:2px;">
                         <h5 style="color:#8D9EFF;">Puntos totales<br> en CABA:</h5>
@@ -108,8 +108,6 @@ grafico = px.bar(
     y="barrio",
     x="puntos_totales",
     orientation="h",
-    log_x=False,
-    log_y=False,
     width=500,
     height=800,
     template="plotly",
@@ -127,4 +125,13 @@ st.sidebar.markdown("""
                            Así mismo, en el mapa interactivo puedes ver los puntos agrupados y desagruparlos \ 
                            al hacer zoom  o clickear sobre ellos.
                     """)
-                    
+
+st.write("""
+         <style>
+            .eczokvf1{
+                background-image: url(https://cdn.pixabay.com/photo/2016/11/19/18/46/concrete-1840731_960_720.jpg);
+                background-repeat:repeat;
+
+                }
+        </style>""", 
+        unsafe_allow_html=True)
