@@ -122,19 +122,5 @@ st.sidebar.markdown("""
                    - Dashboard interactivo
                     
                     ###### En el dashboard interactivo, puedes seleccionar y quitar localidades.  \
-                           Así mismo, en el mapa interactivo puedes ver los puntos agrupados y desagruparlos \ 
-                           al hacer zoom  o clickear sobre ellos.
+                           Así mismo, en el mapa interactivo puedes ver los puntos agrupados y desagruparlos al hacer zoom  o clickear sobre ellos.
                     """)
-
-
-''' BACKGROUND 
-st.write("""
-         <style>
-            .eczokvf1{
-                background-image: url(https://cdn.pixabay.com/photo/2016/11/19/18/46/concrete-1840731_960_720.jpg);
-                background-repeat:repeat;
-
-                }
-        </style>""", 
-        unsafe_allow_html=True)
- '''
