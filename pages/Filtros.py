@@ -91,15 +91,13 @@ st.markdown("""
               Por practicidad se dejarón ya que el objetivo principal fue mostrarlos en un mapa interactivo.      \
               **Puedes ver los datos sin modificacion en la pestaña de "Info"** """)
 
+''' BACKGROUND 
 st.write("""
          <style>
             .eczokvf1{
                 background-image: url(https://cdn.pixabay.com/photo/2016/11/19/18/46/concrete-1840731_960_720.jpg);
                 background-repeat:repeat;
                 }
-                
-            p{
-                text-shadow:1px 1px 10px white;
-            }
         </style>""", 
         unsafe_allow_html=True)
+ '''
