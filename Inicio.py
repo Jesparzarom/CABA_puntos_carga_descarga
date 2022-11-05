@@ -20,7 +20,7 @@ dataset2 = dataset2.sort_values(by=['barrio'])
 seleccion = dataset2.copy()
 
 #   Agrupar los puntos por barrio
-seleccion = seleccion.groupby(["barrio"], as_index=False, sort=True)[["lat", "long", "comuna"]].mean()
+seleccion = seleccion.groupby("barrio", as_index=False, sort=True)["lat", "long", "comuna"].mean()
 seleccion = pd.DataFrame(seleccion)
 
 #   Asignar Variables "puntos_totales" a puntos totales por barrio y coords a lista de coordenadas
